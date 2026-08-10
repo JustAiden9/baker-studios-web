@@ -74,18 +74,7 @@ These steps assume Ubuntu and a DNS `A` record for `apps.bakerstudios.net` point
    sudo certbot --nginx -d apps.bakerstudios.net
    ```
 
-Certbot configures automatic certificate renewal. The supplied Nginx configuration adds strong security headers and caches static assets.
-
-## Automatic GitHub deployment
-
-The included workflow publishes every push to `main`. Create a dedicated SSH key for deployment and add these GitHub Actions repository secrets:
-
-- `DROPLET_HOST`: the Droplet IP or hostname
-- `DROPLET_USER`: the non-root user that owns `/var/www/baker-studios-web`
-- `DEPLOY_SSH_KEY`: that user's private deployment key
-- `DROPLET_HOST_KEY`: output of `ssh-keyscan -H YOUR_DROPLET_IP` after verifying the server fingerprint
-
-Add the matching public key to the deployment user's `~/.ssh/authorized_keys` on the Droplet. The workflow syncs only public site files and will remove old public files that no longer exist in the repository.
+Certbot configures automatic certificate renewal. The supplied Nginx configuration adds strong security headers and caches static assets. Deployment is manual; pushing to GitHub does not build or publish the website.
 
 ## App-launch checklist
 
