@@ -10,7 +10,7 @@ This copy is configured for:
 - Legal entity: Baker Studios LLC
 - Support and privacy contact: `apps@bakerstudios.net`
 - Business location: Barrington, Illinois, United States
-- Current app: Milo
+- Current apps: Nudge and Milo
 
 Run `./scripts/check-site.sh` after every content update. The site is intentionally configured only once; `configure-site.sh` remains as a record of the original setup mechanism.
 
@@ -81,9 +81,9 @@ Certbot configures automatic certificate renewal. The supplied Nginx configurati
 For each released app:
 
 1. Update the app’s development status with its accurate availability and App Store link.
-2. Keep its stable product page, such as `/apps/milo/`, current.
-3. Keep its product-specific support page, such as `/apps/milo/support/`, current.
-4. Update its app-specific privacy page, such as `/apps/milo/privacy/`, to match the app and every embedded third-party SDK.
+2. Keep its stable product page, such as `/apps/nudge/`, current.
+3. Keep its product-specific support page, such as `/apps/nudge/support/`, current.
+4. Update its app-specific privacy and terms pages, such as `/apps/nudge/privacy/` and `/apps/nudge/terms/`, to match the app and every embedded third-party SDK.
 5. Use the HTTPS support and privacy URLs in App Store Connect.
 6. Add the same privacy link inside the app in an easy-to-find location.
 7. Keep the company name, contact details, and app claims truthful and current.
