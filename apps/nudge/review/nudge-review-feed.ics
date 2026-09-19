@@ -1,0 +1,49 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Baker Studios//Nudge App Review Sample Feed//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Nudge review sample course calendar
+BEGIN:VEVENT
+UID:nudge-review-1@bakerstudios.net
+DTSTAMP:20260918T120000Z
+DTSTART:20260921T235900
+SUMMARY:Problem Set 04 [MATH 165]
+DESCRIPTION:Sample event for App Review. Sections 3.1-3.4.
+END:VEVENT
+BEGIN:VEVENT
+UID:nudge-review-2@bakerstudios.net
+DTSTAMP:20260918T120000Z
+DTSTART:20260923T235900
+SUMMARY:Reading response: Chapter 7 [ENGL 250]
+DESCRIPTION:Sample event for App Review. 500 words.
+END:VEVENT
+BEGIN:VEVENT
+UID:nudge-review-3@bakerstudios.net
+DTSTAMP:20260918T120000Z
+DTSTART:20260925T140000
+SUMMARY:Midterm exam [ECON 101]
+DESCRIPTION:Sample event for App Review. Covers units 1-4.
+END:VEVENT
+BEGIN:VEVENT
+UID:nudge-review-4@bakerstudios.net
+DTSTAMP:20260918T120000Z
+DTSTART:20260928T235900
+SUMMARY:Lab report 02 [CHEM 121]
+DESCRIPTION:Sample event for App Review.
+END:VEVENT
+BEGIN:VEVENT
+UID:nudge-review-5@bakerstudios.net
+DTSTAMP:20260918T120000Z
+DTSTART:20261001T235900
+SUMMARY:Essay 1: rough draft [ENGL 250]
+DESCRIPTION:Sample event for App Review. 2000 words.
+END:VEVENT
+BEGIN:VEVENT
+UID:nudge-review-6@bakerstudios.net
+DTSTAMP:20260918T120000Z
+DTSTART:20261005T235900
+SUMMARY:Group project checkpoint [ECON 101]
+DESCRIPTION:Sample event for App Review.
+END:VEVENT
+END:VCALENDAR
