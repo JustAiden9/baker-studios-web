@@ -1,6 +1,6 @@
 # Baker Studios website
 
-A fast, dependency-free company website and future app hub. It is plain HTML, CSS, and a tiny amount of JavaScript, so it needs no build process, database, Node.js runtime, or container. Nginx can serve it comfortably on DigitalOcean's smallest Droplet.
+A fast, dependency-free company website and future app hub. It is plain HTML, CSS, and a tiny amount of JavaScript, so it needs no build process, database, Node.js runtime, or container. It is served as a static site on DigitalOcean App Platform, straight from this repository.
 
 ## Current configuration
 
@@ -12,7 +12,7 @@ This copy is configured for:
 - Business location: Barrington, Illinois, United States
 - Current apps: Nudge and Milo
 
-Run `./scripts/check-site.sh` after every content update. The site is intentionally configured only once; `configure-site.sh` remains as a record of the original setup mechanism.
+Run `./scripts/check-site.sh` before pushing any content update — pushes deploy automatically. The site is intentionally configured only once; `configure-site.sh` remains as a record of the original setup mechanism.
 
 Apple requires an organization's website to be public, functional, and associated with the organization. Apple also requires the enrollment email to use the organization's domain. A city/state-level business location avoids unnecessarily publishing a home street address; ask a qualified attorney whether your circumstances require a full address.
 
@@ -28,53 +28,28 @@ python3 -m http.server 8080
 
 Then open `http://localhost:8080`. Using a local server matters because links beginning with `/` do not work correctly when an HTML file is opened directly.
 
-## Put it on GitHub
+## Publishing
 
-Create an empty private or public GitHub repository, then from this folder:
+**Deployment is automatic.** The site is a DigitalOcean App Platform static site connected to this
+GitHub repository, so pushing to `main` publishes it — there is no build step, no server to log into
+and no files to copy by hand:
 
 ```sh
-git init
 git add .
-git commit -m "Launch Baker Studios website"
-git branch -M main
-git remote add origin git@github.com:YOUR_ACCOUNT/baker-studios-web.git
-git push -u origin main
+git commit -m "Describe the change"
+git push
 ```
 
-## First-time DigitalOcean setup
+App Platform picks up the push, deploys it, and serves it at `https://apps.bakerstudios.net`. The
+custom domain and its TLS certificate, including renewal, are managed there too. A deploy takes a
+minute or so; watch it in the App Platform dashboard, and give it a moment before assuming a new
+page or file is missing.
 
-These steps assume Ubuntu and a DNS `A` record for `apps.bakerstudios.net` pointing to the Droplet's public IPv4 address.
+Because every push goes live, run `./scripts/check-site.sh` *before* pushing rather than after.
 
-1. Install the small web-server packages:
-
-   ```sh
-   sudo apt update
-   sudo apt install -y nginx certbot python3-certbot-nginx
-   ```
-
-2. Create the deployment directory and give a non-root deployment user ownership:
-
-   ```sh
-   sudo mkdir -p /var/www/baker-studios-web
-   sudo chown -R "$USER":"$USER" /var/www/baker-studios-web
-   ```
-
-3. Copy `deploy/nginx.conf` to the server, then enable it:
-
-   ```sh
-   sudo cp deploy/nginx.conf /etc/nginx/sites-available/baker-studios-web
-   sudo ln -s /etc/nginx/sites-available/baker-studios-web /etc/nginx/sites-enabled/baker-studios-web
-   sudo nginx -t
-   sudo systemctl reload nginx
-   ```
-
-4. After DNS resolves, enable HTTPS:
-
-   ```sh
-   sudo certbot --nginx -d apps.bakerstudios.net
-   ```
-
-Certbot configures automatic certificate renewal. The supplied Nginx configuration adds strong security headers and caches static assets. Deployment is manual; pushing to GitHub does not build or publish the website.
+`deploy/nginx.conf` is kept as a record of the original Droplet setup, alongside
+`configure-site.sh`. It is not what serves the site, so its cache and security headers are not in
+effect; anything equivalent has to be configured on App Platform.
 
 ## App-launch checklist
 
@@ -90,4 +65,4 @@ For each released app:
 
 ## Resource profile
 
-The public site is roughly a few dozen kilobytes plus HTML and has no server-side process. Nginx generally uses only a small fraction of the RAM available on a 512 MB / $4-class Droplet. The setup intentionally avoids Docker, a CMS, and a JavaScript framework to minimize memory use, updates, and failure points.
+The public site is roughly a few dozen kilobytes plus HTML and has no server-side process, so it sits comfortably inside App Platform's smallest static-site tier. The setup intentionally avoids Docker, a CMS, and a JavaScript framework to minimize build time, updates, and failure points.
