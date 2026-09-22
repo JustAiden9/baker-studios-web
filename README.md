@@ -10,7 +10,7 @@ This copy is configured for:
 - Legal entity: Baker Studios LLC
 - Support and privacy contact: `apps@bakerstudios.net`
 - Business location: Barrington, Illinois, United States
-- Current apps: Pip (formerly Nudge) and Milo
+- Current apps: Pip and Milo
 
 Run `./scripts/check-site.sh` before pushing any content update — pushes deploy automatically. The site is intentionally configured only once; `configure-site.sh` remains as a record of the original setup mechanism.
 
@@ -63,14 +63,14 @@ For each released app:
 6. Add the same privacy link inside the app in an easy-to-find location.
 7. Keep the company name, contact details, and app claims truthful and current.
 
-## Pip (formerly Nudge)
+## Pip
 
-Nudge was renamed Pip in September 2026. The Pip pages live in `/apps/pip/` and use
+The app was called Nudge during development and renamed Pip in September 2026. The Pip pages live in `/apps/pip/` and use
 `/assets/pip.css` (loaded after `styles.css`, with `body.pip-theme`), the self-hosted
 Fraunces and Figtree fonts in `/assets/fonts/` (subset, SIL OFL, licenses alongside), and
 art in `/assets/pip/` (the app icon as SVG and PNG, and Pip's poses exported from the app).
 
-Every old Nudge URL still works:
+Every old Nudge URL still works, as a neutral "Redirecting to Pip…" page:
 
 - `/apps/nudge/`, `/apps/nudge/support/`, `/apps/nudge/privacy/` and `/apps/nudge/terms/` are
   small redirect pages (meta refresh, canonical, and a JavaScript fallback) to the matching
