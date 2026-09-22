@@ -10,7 +10,7 @@ This copy is configured for:
 - Legal entity: Baker Studios LLC
 - Support and privacy contact: `apps@bakerstudios.net`
 - Business location: Barrington, Illinois, United States
-- Current apps: Nudge and Milo
+- Current apps: Pip (formerly Nudge) and Milo
 
 Run `./scripts/check-site.sh` before pushing any content update — pushes deploy automatically. The site is intentionally configured only once; `configure-site.sh` remains as a record of the original setup mechanism.
 
@@ -56,12 +56,35 @@ effect; anything equivalent has to be configured on App Platform.
 For each released app:
 
 1. Update the app’s development status with its accurate availability and App Store link.
-2. Keep its stable product page, such as `/apps/nudge/`, current.
-3. Keep its product-specific support page, such as `/apps/nudge/support/`, current.
-4. Update its app-specific privacy and terms pages, such as `/apps/nudge/privacy/` and `/apps/nudge/terms/`, to match the app and every embedded third-party SDK.
+2. Keep its stable product page, such as `/apps/pip/`, current.
+3. Keep its product-specific support page, such as `/apps/pip/support/`, current.
+4. Update its app-specific privacy and terms pages, such as `/apps/pip/privacy/` and `/apps/pip/terms/`, to match the app and every embedded third-party SDK.
 5. Use the HTTPS support and privacy URLs in App Store Connect.
 6. Add the same privacy link inside the app in an easy-to-find location.
 7. Keep the company name, contact details, and app claims truthful and current.
+
+## Pip (formerly Nudge)
+
+Nudge was renamed Pip in September 2026. The Pip pages live in `/apps/pip/` and use
+`/assets/pip.css` (loaded after `styles.css`, with `body.pip-theme`), the self-hosted
+Fraunces and Figtree fonts in `/assets/fonts/` (subset, SIL OFL, licenses alongside), and
+art in `/assets/pip/` (the app icon as SVG and PNG, and Pip's poses exported from the app).
+
+Every old Nudge URL still works:
+
+- `/apps/nudge/`, `/apps/nudge/support/`, `/apps/nudge/privacy/` and `/apps/nudge/terms/` are
+  small redirect pages (meta refresh, canonical, and a JavaScript fallback) to the matching
+  `/apps/pip/` page. The Nudge 1.0 app and App Store Connect link to these, so keep them.
+- `/nudge/`, `/nudge/support/`, `/nudge/privacy/` and `/nudge/terms/` redirect the same way,
+  for older links planned on `bakerstudios.net/nudge/...`.
+- `/apps/nudge/review/nudge-review-feed.ics` is the App Review sample Canvas feed. **Keep it at
+  that exact path.** A copy lives at `/apps/pip/review/pip-review-feed.ics`.
+
+App Platform static sites have no redirect file in the repo; real HTTP redirects would have to
+be added as ingress rules in the App Platform app spec.
+
+The Pip App Store screenshots have a ready-made spot on `/apps/pip/`: search that page for
+`SCREENSHOTS GO HERE`.
 
 ## Resource profile
 
