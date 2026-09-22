@@ -150,11 +150,11 @@
 .pip-moment p { margin: 0; color: var(--muted); }
 .pip-quote { display: inline-block; padding: 2px 8px; border-radius: 8px; color: var(--ink); background: var(--sunken); font-weight: 600; }
 
-/* Screenshots (drop-in spot, see the comment in /apps/pip/index.html) */
-.pip-shots { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(220px, 1fr); gap: 22px; overflow-x: auto; padding-bottom: 12px; scroll-snap-type: x mandatory; }
-.pip-shots figure { margin: 0; scroll-snap-align: start; }
-.pip-shots img { display: block; width: 100%; height: auto; border: 1.5px solid var(--line); border-radius: 28px; box-shadow: 0 5px 0 var(--edge); }
-.pip-shots figcaption { margin-top: 14px; font-weight: 700; }
+/* Screenshots: five in a row on desktop, a sideways-scrolling strip on phones */
+.pip-shots { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 22px; }
+.pip-shots figure { margin: 0; }
+.pip-shots img { display: block; width: 100%; height: auto; border: 1.5px solid var(--line); border-radius: 26px; background: var(--sunken); box-shadow: 0 5px 0 var(--edge); }
+.pip-shots figcaption { margin-top: 16px; font: 600 19px/1.25 var(--serif); letter-spacing: -.01em; }
 
 /* Canvas steps */
 .pip-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin: 0; padding: 0; list-style: none; counter-reset: step; }
@@ -226,6 +226,8 @@
 }
 
 @media (max-width: 860px) {
+  .pip-shots { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 68vw; gap: 16px; margin-inline: calc((100vw - 100%) / -2); padding: 4px calc((100vw - 100%) / 2) 14px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: calc((100vw - 100%) / 2); overscroll-behavior-x: contain; }
+  .pip-shots figure { scroll-snap-align: start; }
   .pip-theme .site-nav a { font-family: var(--serif); }
   .pip-theme .site-nav .nav-cta { font-family: var(--sans); font-weight: 700; }
   .pip-hero { grid-template-columns: 1fr; gap: 56px; padding-block: 48px 84px; }

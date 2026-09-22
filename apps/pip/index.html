@@ -11,9 +11,11 @@
     <meta property="og:description" content="Bring in Canvas deadlines, see what’s due next, and get nudged before it slips. Free on iPhone, with a small bird on your windowsill.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://apps.bakerstudios.net/apps/pip/">
-    <meta property="og:image" content="https://apps.bakerstudios.net/assets/pip/pip-icon-1024.png">
-    <meta property="og:image:alt" content="Pip, a round apricot songbird with a green two-leaf crest, sitting in a twig nest on a windowsill">
-    <meta name="twitter:card" content="summary">
+    <meta property="og:image" content="https://apps.bakerstudios.net/assets/pip/og-pip.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Pip, a round apricot songbird with a green two-leaf crest, beside iPhone screens: never miss a deadline again, always know what’s next, a nudge before it’s late, and Canvas moved it? I caught it.">
+    <meta name="twitter:card" content="summary_large_image">
     <meta name="apple-itunes-app" content="app-id=6812403063">
     <link rel="canonical" href="https://apps.bakerstudios.net/apps/pip/">
     <link rel="icon" href="/assets/pip/pip-room.svg" type="image/svg+xml">
@@ -47,7 +49,6 @@
             <a class="pip-btn" href="https://apps.apple.com/app/id6812403063">Get Pip on the App Store</a>
             <a class="pip-btn soft" href="#canvas">How Canvas works</a>
           </div>
-          <p class="pip-formerly">Pip used to be called Nudge. Same app, new look.</p>
         </div>
         <figure class="pip-window reveal">
           <img src="/assets/pip/pip-room.svg" alt="Pip, a round apricot songbird with a two-leaf green crest, sitting in his twig nest on a dorm-room windowsill with the campus outside" width="1024" height="1024" fetchpriority="high">
@@ -103,27 +104,21 @@
         </div>
       </section>
 
-      <!--
-        SCREENSHOTS GO HERE.
-        New Pip App Store screenshots were not ready when this page shipped. When they are:
-        1. Export PNGs about 600 px wide into /assets/pip/shots/ (for example home.png, nudges.png,
-           remind-me.png, start-early.png, widgets.png). Do not reuse old Nudge/Blip captures.
-        2. Uncomment the section below, check the file names and alt text, and run ./scripts/check-site.sh.
-        The .pip-shots styles already exist in /assets/pip.css (a row that scrolls sideways on phones).
-
-      <section class="pip-section" aria-labelledby="shots-title">
+      <section class="pip-section" id="look-inside" aria-labelledby="shots-title">
         <div class="shell">
-          <div class="pip-head reveal"><div><p class="eyebrow">A look inside</p><h2 id="shots-title">Pip’s room, on your phone.</h2></div></div>
-          <div class="pip-shots">
-            <figure><img src="/assets/pip/shots/home.png" alt="Pip home screen with a countdown to the next deadline" width="600" height="1300" loading="lazy"><figcaption>Know what’s due next.</figcaption></figure>
-            <figure><img src="/assets/pip/shots/nudges.png" alt="Choosing how early Pip sends nudges" width="600" height="1300" loading="lazy"><figcaption>Get a heads-up before the deadline.</figcaption></figure>
-            <figure><img src="/assets/pip/shots/remind-me.png" alt="Remind me sheet with typed text" width="600" height="1300" loading="lazy"><figcaption>Remind yourself after work.</figcaption></figure>
-            <figure><img src="/assets/pip/shots/start-early.png" alt="Start early tag on an assignment" width="600" height="1300" loading="lazy"><figcaption>Make a small start.</figcaption></figure>
-            <figure><img src="/assets/pip/shots/widgets.png" alt="Pip widgets on the Home Screen" width="600" height="1300" loading="lazy"><figcaption>Keep homework in sight.</figcaption></figure>
+          <div class="pip-head reveal">
+            <div><p class="eyebrow">A look inside</p><h2 id="shots-title">Pip’s room, on your phone.</h2></div>
+            <p>Every screen answers one question: what’s due next, and how long do you have?</p>
+          </div>
+          <div class="pip-shots reveal">
+            <figure><img src="/assets/pip/shots/home-600.webp" srcset="/assets/pip/shots/home-600.webp 600w, /assets/pip/shots/home-1200.webp 1200w" sizes="(max-width: 860px) 68vw, 220px" alt="Pip’s home screen. Pip sits in his nest on the windowsill and says “2 due today. One at a time.” Below, a countdown reads 4h 39m until Problem set 04 is due, with a Mark done button." width="600" height="1304" loading="lazy" decoding="async"><figcaption>Always know what’s next.</figcaption></figure>
+            <figure><img src="/assets/pip/shots/due-soon-600.webp" srcset="/assets/pip/shots/due-soon-600.webp 600w, /assets/pip/shots/due-soon-1200.webp 1200w" sizes="(max-width: 860px) 68vw, 220px" alt="The countdown turns rose at 51 minutes until Problem set 04 is due, and Pip says “MATH 165 is due soon. You’ve got this.”" width="600" height="1304" loading="lazy" decoding="async"><figcaption>A nudge before it’s late.</figcaption></figure>
+            <figure><img src="/assets/pip/shots/deadline-moved-600.webp" srcset="/assets/pip/shots/deadline-moved-600.webp 600w, /assets/pip/shots/deadline-moved-1200.webp 1200w" sizes="(max-width: 860px) 68vw, 220px" alt="A “deadline moved” card shows the Supply and demand worksheet moving from Tuesday 5:00 PM to Wednesday 5:00 PM, and Pip says “Heads up: Canvas moved a deadline.”" width="600" height="1304" loading="lazy" decoding="async"><figcaption>Canvas moved it? Pip caught it.</figcaption></figure>
+            <figure><img src="/assets/pip/shots/quick-add-600.webp" srcset="/assets/pip/shots/quick-add-600.webp 600w, /assets/pip/shots/quick-add-1200.webp 1200w" sizes="(max-width: 860px) 68vw, 220px" alt="Quick add with “stats quiz friday 10am” typed in, previewed as Stats quiz, Friday, 10:00 AM." width="600" height="1304" loading="lazy" decoding="async"><figcaption>Just type it like a text.</figcaption></figure>
+            <figure><img src="/assets/pip/shots/night-600.webp" srcset="/assets/pip/shots/night-600.webp 600w, /assets/pip/shots/night-1200.webp 1200w" sizes="(max-width: 860px) 68vw, 220px" alt="Night in Pip’s room: Pip asleep with his crest folded over his eyes, and “All clear. Nothing due. Enjoy it.” below." width="600" height="1304" loading="lazy" decoding="async"><figcaption>Quiet while you sleep.</figcaption></figure>
           </div>
         </div>
       </section>
-      -->
 
       <section class="pip-section" id="canvas" aria-labelledby="canvas-title">
         <div class="shell">
@@ -151,7 +146,6 @@
             <div>
               <blockquote><p>“I made this app after forgetting one assignment. It was on my Canvas list, but I needed a reminder before it was too late. Pip grew from that simple idea: help me remember my homework while there is still time to do it.”</p></blockquote>
               <figcaption><cite>The founder, Baker Studios</cite></figcaption>
-              <p class="pip-formerly">Pip was called Nudge until 2026, with a different sidekick. It’s the same app on the App Store, rebuilt around a new character, who gave it his name.</p>
             </div>
           </figure>
         </div>
