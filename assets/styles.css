@@ -65,7 +65,7 @@ h1 em, h2 em { color: var(--accent); font-family: Georgia, serif; font-weight: 4
 .unloop-tile { overflow: hidden; background: white; }
 .unloop-tile img { object-fit: contain; transform: scale(1.15); transform-origin: 43% 50%; }
 .milo-tile { background: #50bff1; }
-.nudge-tile { background: #a8a7f8; }
+.nudge-tile { background: #7cc456; }
 
 .section { padding-block: 140px; }
 .section-heading { display: grid; grid-template-columns: 1.4fr .6fr; align-items: end; gap: 70px; margin-bottom: 72px; }
@@ -73,9 +73,15 @@ h1 em, h2 em { color: var(--accent); font-family: Georgia, serif; font-weight: 4
 .section-heading > p { max-width: 430px; margin: 0 0 4px; color: var(--muted); }
 .app-preview { min-height: 330px; display: grid; grid-template-columns: 250px 1fr auto; align-items: center; gap: 56px; padding: 54px; background: var(--ink); color: white; border-radius: 26px; overflow: hidden; }
 .app-preview + .app-preview { margin-top: 24px; }
-.nudge-preview { background: #252250; }
-.nudge-preview .status span { background: #69e1b3; box-shadow: 0 0 0 5px rgba(105,225,179,.14); }
-.nudge-preview .app-kicker { color: #aef1d5; }
+/* Nudge's card is Pip's button green with deep-green type, flat with a solid lip like the app. */
+.nudge-preview { background: #7cc456; color: #1d3a10; box-shadow: 0 6px 0 #5e9f3d; }
+.nudge-preview .status { color: #1d3a10; }
+.nudge-preview .status span { background: #f2c14e; box-shadow: 0 0 0 5px rgba(242,193,78,.3); }
+.nudge-preview .app-kicker { color: #1d3a10; }
+.nudge-preview .preview-copy > p:last-child { color: #1d3a10; }
+.nudge-preview .app-logo { box-shadow: 0 6px 0 rgba(29,58,16,.28); }
+.nudge-preview .circle-link { border-color: rgba(29,58,16,.4); color: #1d3a10; }
+.nudge-preview .circle-link:hover { background: #1d3a10; border-color: #1d3a10; color: #7cc456; }
 .preview-icon { position: relative; aspect-ratio: 1; background: var(--lime); border-radius: 25%; transform: rotate(-4deg); }
 .app-logo { display: block; width: 100%; height: auto; object-fit: cover; box-shadow: 0 22px 44px rgba(0,0,0,.22); }
 .preview-icon span { position: absolute; height: 18%; border-radius: 999px; background: var(--ink); transform: rotate(-38deg); }
@@ -172,12 +178,29 @@ h1 em, h2 em { color: var(--accent); font-family: Georgia, serif; font-weight: 4
 .faq-item h3 { margin-bottom: 10px; font-size: 22px; letter-spacing: -.025em; }
 .faq-item p { max-width: 760px; margin: 0; color: var(--muted); }
 
-.nudge-theme { --accent: #625bea; --lime: #aef1d5; }
-.nudge-theme .product-icon-wrap::before { background: #c9f7e2; }
-.nudge-theme .product-detail-art { background: linear-gradient(145deg, #aaaafa, #f0d4ed); }
-.nudge-theme .feature-card:nth-child(1) .feature-icon { background: #c9f7e2; }
-.nudge-theme .feature-card:nth-child(2) .feature-icon { background: #d6d4ff; }
-.nudge-theme .feature-card:nth-child(3) .feature-icon { background: #f2d5ec; }
+/* Nudge pages wear the app's Pip palette (Nudge/DesignSystem/Theme.swift): warm cream paper,
+   soil-brown ink, text-safe green accent, and the button green #7cc456 with deep-green type.
+   Flat fills with a warm outline and a solid bottom lip, never gradients. */
+.nudge-theme { --ink: #2b2320; --paper: #faf5ea; --white: #fffdf8; --accent: #367524; --lime: #e2f3d4; --muted: #6b5d50; --line: rgba(90,65,40,.16); }
+.nudge-theme .site-footer { background: #2b2320; }
+.nudge-theme .footer-links a:hover { color: #93d46f; }
+.nudge-theme .product-status span { background: #7cc456; }
+.nudge-theme .product-icon-wrap::before { background: #e2f3d4; }
+.nudge-theme .product-detail-art { background: #dcebfb; }
+.nudge-theme .feature-card { border: 1.5px solid #eadfcb; box-shadow: 0 4px 0 #e4d6be; }
+.nudge-theme .feature-card:nth-child(1) .feature-icon { background: #e2f3d4; }
+.nudge-theme .feature-card:nth-child(2) .feature-icon { background: #fdefcf; }
+.nudge-theme .feature-card:nth-child(3) .feature-icon { background: #dcebfb; }
+.nudge-theme .support-card, .nudge-theme .callout { border-color: #eadfcb; }
+.nudge-theme .callout { border-left-color: #7cc456; }
+.nudge-theme .button-dark { color: #1d3a10; background: #7cc456; box-shadow: 0 4px 0 #5e9f3d; }
+.nudge-theme .button-dark:hover { background: #74c947; }
+.nudge-theme .button-dark:active { transform: translateY(3px); box-shadow: 0 1px 0 #5e9f3d; }
+.nudge-theme .contact-section { color: #1d3a10; background: #7cc456; }
+.nudge-theme .contact-inner .eyebrow::before { background: #1d3a10; }
+.nudge-theme .contact-inner > p:not(.eyebrow) { color: #1d3a10; }
+.nudge-theme .button-light { color: #1d3a10; background: #fffdf8; box-shadow: 0 4px 0 #5e9f3d; }
+.nudge-theme .button-light:hover { background: #eaf6de; }
 
 .reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
 .reveal.visible { opacity: 1; transform: none; }
@@ -237,3 +260,4 @@ h1 em, h2 em { color: var(--accent); font-family: Georgia, serif; font-weight: 4
   .product-hero-actions { align-items: flex-start; flex-direction: column; }
   .product-detail-art { padding: 30px; }
 }
+.nudge-theme .contact-inner .button { margin: 6px 5px; }
