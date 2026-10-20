@@ -10,7 +10,7 @@ This copy is configured for:
 - Legal entity: Baker Studios LLC
 - Support and privacy contact: `apps@bakerstudios.net`
 - Business location: Barrington, Illinois, United States
-- Current apps: Nudge and Milo
+- Current apps: Nudge, Bimble and Milo
 
 Run `./scripts/check-site.sh` before pushing any content update — pushes deploy automatically. The site is intentionally configured only once; `configure-site.sh` remains as a record of the original setup mechanism.
 

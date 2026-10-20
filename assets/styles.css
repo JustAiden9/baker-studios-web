@@ -261,3 +261,25 @@ h1 em, h2 em { color: var(--accent); font-family: Georgia, serif; font-weight: 4
   .product-detail-art { padding: 30px; }
 }
 .nudge-theme .contact-inner .button { margin: 6px 5px; }
+
+/* Pacer pages wear the app's palette (PacerCore/Theme/Palette.swift): cream paper, ink brown
+   (never black), leaf green for things to touch, honey for the trail's light. */
+.pacer-theme { --ink: #4e3424; --paper: #fbf3e0; --white: #fffaf0; --accent: #4a7029; --lime: #f2e3c3; --muted: #7a5a43; --line: rgba(78,52,36,.18); }
+.pacer-theme .site-footer { background: #4e3424; }
+.pacer-theme .footer-links a:hover { color: #f2bb4a; }
+.pacer-theme .product-status span { background: #8db654; }
+.pacer-theme .product-icon-wrap::before { background: #f2e3c3; }
+.pacer-theme .product-detail-art { background: #f2e3c3; }
+.pacer-theme .feature-card { border: 1.5px solid #dcc59b; box-shadow: 0 4px 0 #dcc59b; }
+.pacer-theme .feature-card:nth-child(1) .feature-icon { background: #fbe3a8; }
+.pacer-theme .feature-card:nth-child(2) .feature-icon { background: #e3eccd; }
+.pacer-theme .feature-card:nth-child(3) .feature-icon { background: #f7d2bc; }
+.pacer-theme .support-card, .pacer-theme .callout { border-color: #dcc59b; }
+.pacer-theme .callout { border-left-color: #8db654; }
+.pacer-theme .button-dark { color: #23330f; background: #8db654; box-shadow: 0 4px 0 #5d8a34; }
+.pacer-theme .button-dark:hover { background: #97c05d; }
+.pacer-theme .button-dark:active { transform: translateY(3px); box-shadow: 0 1px 0 #5d8a34; }
+.pacer-theme .contact-section { color: #4e3424; background: #f2bb4a; }
+.pacer-theme .contact-inner .eyebrow::before { background: #4e3424; }
+.pacer-theme .button-light { color: #4e3424; background: #fffaf0; box-shadow: 0 4px 0 #d99a2b; }
+.pacer-theme .button-light:hover { background: #fbf3e0; }
