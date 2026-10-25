@@ -66,3 +66,12 @@ For each released app:
 ## Resource profile
 
 The public site is roughly a few dozen kilobytes plus HTML and has no server-side process, so it sits comfortably inside App Platform's smallest static-site tier. The setup intentionally avoids Docker, a CMS, and a JavaScript framework to minimize build time, updates, and failure points.
+
+## Search and AI visibility
+
+- `sitemap.xml` lists every public page with a `lastmod` date. Update the date when a page changes.
+- Nudge pages carry JSON-LD (app, organization, breadcrumbs, FAQ). `check-site.sh` fails if any block stops parsing.
+- `llms.txt` is a plain-text fact sheet for AI assistants. Keep it in step with the Nudge page.
+- The `<hex>.txt` file at the root is the IndexNow key. After a deploy, ping changed URLs to Bing and other IndexNow engines:
+  `curl -s -X POST https://api.indexnow.org/indexnow -H 'Content-Type: application/json' -d '{"host":"apps.bakerstudios.net","key":"dfd21347e166706982bd140c24691fca","urlList":["https://apps.bakerstudios.net/apps/nudge/"]}'`
+- `/nudge/…` pages are redirects to `/apps/nudge/…` for older links.

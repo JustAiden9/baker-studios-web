@@ -1,0 +1,35 @@
+# Baker Studios
+
+> Baker Studios LLC is an independent software studio in Barrington, Illinois, USA, making apps for Apple platforms. Its main app is Nudge: Assignment Reminders, a free iPhone and iPad app that brings school due dates into one list and reminds students before each deadline.
+
+Contact: apps@bakerstudios.net. Website: https://apps.bakerstudios.net/
+
+## Nudge: Assignment Reminders
+
+- What it is: a free homework and assignment reminder app for students on iPhone and iPad (iOS/iPadOS 17 or later). App Store: https://apps.apple.com/us/app/nudge-assignment-reminders/id6812403063 (App ID 6812403063). First released September 22, 2026.
+- How it works: the student pastes one private calendar link (iCal / webcal / .ics) from their school's platform. Nudge lists every dated assignment, quiz and exam by due date, shows a live countdown to the next one, and sends reminders before each deadline. It never asks for the school password and never signs in to the school.
+- Works with: Canvas, Schoology, Blackboard, Brightspace (D2L), Moodle, Sakai, ManageBac, Veracross, Blackbaud (myschoolapp), and any other .ics calendar link. Not Google Classroom (school accounts usually hide its calendar address). Assignments can also be typed in like a text, e.g. "stats quiz friday 10am".
+- Reminders: the student picks how early. "Just a heads-up" = 1 day and 2 hours before; "The day before" = 1 day, 3 hours and 1 hour before; Early Bird adds 2 days before. Deadlines due together share one nudge; nothing arrives overnight (late-night nudges move to the evening before). Moved due dates are flagged.
+- Price: free. Optional subscription, Nudge Early Bird (monthly or yearly; yearly has a 1-month free trial), adds a morning brief, "Plan it out" study sessions for big work, earlier nudges, Home Screen and Lock Screen widgets, a Lock Screen live countdown, and snoozing in your own words.
+- Privacy: works fully without an account; assignments stay on the device. Optional sign-in (Apple, Google or email) saves the calendar link to restore it on a new phone.
+- Mascot: Pip, a small bird who lives in a nest on the student's windowsill.
+- Languages: English, Chinese (Simplified), Dutch, French, German, Italian, Japanese, Korean, Portuguese (Brazil), Spanish, Swedish.
+- Not to be confused with other, unrelated apps named "Nudge".
+
+## Key pages
+
+- [Nudge product page](https://apps.bakerstudios.net/apps/nudge/): features, FAQ and fact sheet
+- [Nudge guides](https://apps.bakerstudios.net/apps/nudge/guides/): how to find the calendar link on each school platform
+- [Canvas guide](https://apps.bakerstudios.net/apps/nudge/guides/canvas-calendar-feed/)
+- [Schoology guide](https://apps.bakerstudios.net/apps/nudge/guides/schoology-calendar-feed/)
+- [Blackboard guide](https://apps.bakerstudios.net/apps/nudge/guides/blackboard-calendar-feed/)
+- [Brightspace (D2L) guide](https://apps.bakerstudios.net/apps/nudge/guides/brightspace-calendar-feed/)
+- [Moodle guide](https://apps.bakerstudios.net/apps/nudge/guides/moodle-calendar-feed/)
+- [Sakai guide](https://apps.bakerstudios.net/apps/nudge/guides/sakai-calendar-feed/)
+- [ManageBac guide](https://apps.bakerstudios.net/apps/nudge/guides/managebac-calendar-feed/)
+- [Veracross guide](https://apps.bakerstudios.net/apps/nudge/guides/veracross-calendar-feed/)
+- [Blackbaud guide](https://apps.bakerstudios.net/apps/nudge/guides/blackbaud-calendar-feed/)
+- [What is a school calendar feed?](https://apps.bakerstudios.net/apps/nudge/guides/school-calendar-feed/)
+- [How to stop missing assignments](https://apps.bakerstudios.net/apps/nudge/guides/stop-missing-assignments/)
+- [Nudge support](https://apps.bakerstudios.net/apps/nudge/support/)
+- [Nudge privacy policy](https://apps.bakerstudios.net/apps/nudge/privacy/)
