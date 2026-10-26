@@ -80,9 +80,13 @@
       .top span { font-family: Fraunces, Georgia, serif; font-variation-settings: "SOFT" 100; font-size: 23px; font-weight: 640; letter-spacing: -.01em; }
 
       /* Hero */
-      .hero { padding-block: 22px 52px; text-align: center; }
-      .stage { position: relative; display: grid; place-items: center; margin: 6px auto 4px; width: min(100%, 360px); }
-      .stage .pip { width: 74%; margin-top: 64px; }
+      .hero { padding-block: 14px 52px; text-align: center; }
+      .stage { position: relative; display: grid; place-items: center; margin: 2px auto 0; width: min(100%, 320px); }
+      .pip-btn { display: block; width: 100%; margin: 30px auto 0; padding: 0; border: 0; background: none; cursor: pointer; touch-action: manipulation; -webkit-tap-highlight-color: transparent; -webkit-touch-callout: none; user-select: none; }
+      .pip-btn img, .pip-btn canvas { display: block; width: 100%; -webkit-user-drag: none; }
+      canvas[data-tap] { cursor: pointer; touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
+      .pip-btn:focus-visible { outline: 3px solid var(--leaf); outline-offset: 4px; border-radius: 28px; }
+      .hint { margin-top: -2px; color: var(--ink3); font-size: 14px; font-weight: 600; }
       .bubble {
         position: absolute; top: 0; left: 50%; transform: translateX(-50%);
         width: max-content; max-width: 92%; padding: 10px 16px; border-radius: 18px;
@@ -161,7 +165,7 @@
       /* Pip's moods */
       .moods { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 24px; }
       .mood { padding: 14px 12px 16px; text-align: center; }
-      .mood img { width: 86%; margin: 0 auto; }
+      .mood img, .mood canvas { display: block; width: 92%; margin: 0 auto; }
       .mood span { display: block; margin-top: 4px; font-size: 15px; font-weight: 650; line-height: 1.25; }
 
       /* Note from the maker */
@@ -183,8 +187,9 @@
       @media (prefers-reduced-motion: no-preference) {
         .js .rise { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .7s cubic-bezier(.2,.8,.2,1); }
         .js .rise.in { opacity: 1; transform: none; }
-        .js .hero .pip { animation: settle .9s cubic-bezier(.3,1.4,.5,1) .1s both; }
+        .js .hero .pip-btn { animation: settle .9s cubic-bezier(.3,1.4,.5,1) .1s both; }
         .js .hero .bubble { animation: pop .5s cubic-bezier(.3,1.5,.5,1) .65s both; }
+        .js .hero .bubble.say { animation: pop .38s cubic-bezier(.3,1.5,.5,1) both; }
         .js .note { opacity: 0; transform: translateY(-46px) scale(.96); }
         .js .moment.in .note { animation: drop .6s cubic-bezier(.25,1.35,.5,1) forwards; }
         .js .moment.in .note + .note { animation-delay: .5s; }
@@ -201,6 +206,7 @@
   </head>
   <body>
     <script>document.documentElement.classList.add('js')</script>
+    <script src="/assets/nudge/pip.js" defer></script>
     <header class="col top">
       <img src="/assets/nudge-icon.png" alt="" width="36" height="36">
       <span>Nudge</span>
@@ -209,8 +215,9 @@
     <main>
       <section class="hero col">
         <div class="stage">
-          <p class="bubble">Hi, I’m Pip! I’ll tell you before it’s due.</p>
-          <img class="pip" src="/assets/nudge/pip-greeting.webp" alt="Pip, a small orange bird, waving from his nest" width="720" height="720" fetchpriority="high">
+          <p class="bubble" aria-live="polite"><span>Hi, I’m Pip! I’ll tell you before it’s due.</span></p>
+          <button class="pip-btn" type="button" aria-label="Boop Pip"><img class="pip-art" data-pip="greeting" data-pip-trim="0.2" src="/assets/nudge/pip-greeting.webp" alt="Pip, a small orange bird, waving from his nest" width="720" height="720" fetchpriority="high"></button>
+          <p class="hint">Psst, tap him.</p>
         </div>
         <h1>The little bird who remembers your <em>homework.</em></h1>
         <p class="lead">Nudge puts every due date from Canvas, Schoology, Blackboard and more into one list, and Pip nudges you before each one, while there’s still time to do it.</p>
@@ -285,10 +292,10 @@
         <h2 id="pip-title">He lives in a nest on your windowsill.</h2>
         <p class="lead">He cheers when you finish something, naps when nothing’s due, and gets dizzy if you boop him too much.</p>
         <div class="moods">
-          <div class="card mood rise"><img src="/assets/nudge/pip-cheering.webp" alt="Pip cheering" width="720" height="720" loading="lazy"><span>Finished it!</span></div>
-          <div class="card mood rise"><img src="/assets/nudge/pip-alert.webp" alt="Pip alert, crest up" width="720" height="720" loading="lazy"><span>Due today</span></div>
-          <div class="card mood rise"><img src="/assets/nudge/pip-sleeping.webp" alt="Pip asleep" width="720" height="720" loading="lazy"><span>Nothing due tonight</span></div>
-          <div class="card mood rise"><img src="/assets/nudge/pip-dizzy.webp" alt="Pip dizzy" width="720" height="720" loading="lazy"><span>Booped too much</span></div>
+          <div class="card mood rise"><img data-pip="cheering" data-pip-trim="0.12" data-pip-tap src="/assets/nudge/pip-cheering.webp" alt="Pip hopping and cheering" width="720" height="720" loading="lazy"><span>Finished it!</span></div>
+          <div class="card mood rise"><img data-pip="alert" data-pip-trim="0.12" data-pip-tap src="/assets/nudge/pip-alert.webp" alt="Pip on alert, crest boinging" width="720" height="720" loading="lazy"><span>Due today</span></div>
+          <div class="card mood rise"><img data-pip="sleeping" data-pip-trim="0.12" data-pip-tap src="/assets/nudge/pip-sleeping.webp" alt="Pip asleep, breathing slowly" width="720" height="720" loading="lazy"><span>Nothing due tonight</span></div>
+          <div class="card mood rise"><img data-pip="dizzy" data-pip-trim="0.12" data-pip-tap src="/assets/nudge/pip-dizzy.webp" alt="Pip dizzy with spinning eyes" width="720" height="720" loading="lazy"><span>Booped too much</span></div>
         </div>
       </section>
 
@@ -301,7 +308,7 @@
       </section>
 
       <section class="final col" aria-labelledby="final-title">
-        <img class="pip" src="/assets/nudge/pip-wink.webp" alt="" width="720" height="720" loading="lazy">
+        <div class="pip"><img data-pip="wink" data-pip-trim="0.14" data-pip-tap src="/assets/nudge/pip-wink.webp" alt="" width="720" height="720" loading="lazy"></div>
         <h2 id="final-title">Let Pip keep watch.</h2>
         <p class="lead">Free on the App Store. No account needed.</p>
         <div class="get">
@@ -325,6 +332,39 @@
           if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
         }), { threshold: 0.25 });
         items.forEach((el) => io.observe(el));
+      })();
+
+      // Boop Pip, like in the app: he squashes on each tap, the bubble answers, and five quick
+      // boops make him dizzy. He's drawn live by pip.js, a port of the app's own Pip.
+      (() => {
+        const btn = document.querySelector('.pip-btn');
+        const bubble = document.querySelector('.bubble');
+        const line = bubble.querySelector('span');
+        const hello = line.textContent;
+        const lines = ['Hehe, that tickles!', 'Boop!', 'Still watching your due dates!', 'Hey, I’m on duty!'];
+        let taps = [], back = 0, dizzy = 0, said = 0;
+        const say = (text) => {
+          line.textContent = text;
+          bubble.classList.remove('say'); void bubble.offsetWidth; bubble.classList.add('say');
+        };
+        btn.addEventListener('click', () => {
+          if (!window.Pip) return;
+          const now = Date.now();
+          taps = taps.filter((t) => now - t < 2500).concat(now);
+          clearTimeout(back);
+          if (taps.length >= 5) {
+            taps = [];
+            Pip.pose(btn, 'dizzy');
+            say('Whoa… too many boops.');
+            clearTimeout(dizzy);
+            dizzy = setTimeout(() => Pip.pose(btn, 'greeting'), 3400);
+            back = setTimeout(() => say(hello), 3800);
+            return;
+          }
+          Pip.boop(btn);
+          say(lines[said++ % lines.length]);
+          back = setTimeout(() => say(hello), 3200);
+        });
       })();
     </script>
   </body>
