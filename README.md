@@ -74,4 +74,4 @@ The public site is roughly a few dozen kilobytes plus HTML and has no server-sid
 - `llms.txt` is a plain-text fact sheet for AI assistants. Keep it in step with the Nudge page.
 - The `<hex>.txt` file at the root is the IndexNow key. After a deploy, ping changed URLs to Bing and other IndexNow engines:
   `curl -s -X POST https://api.indexnow.org/indexnow -H 'Content-Type: application/json' -d '{"host":"apps.bakerstudios.net","key":"dfd21347e166706982bd140c24691fca","urlList":["https://apps.bakerstudios.net/apps/nudge/"]}'`
-- `/nudge/…` pages are redirects to `/apps/nudge/…` for older links.
+- `/nudge/` is the share page for friends and family (noindex, so it never competes with `/apps/nudge/`). `/nudge/privacy/`, `/nudge/terms/`, `/nudge/support/` and `/nudge/guides/` redirect to `/apps/nudge/…` for older links.

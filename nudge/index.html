@@ -1,1 +1,331 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Moved to https://apps.bakerstudios.net/apps/nudge/</title><link rel="canonical" href="https://apps.bakerstudios.net/apps/nudge/"><meta http-equiv="refresh" content="0; url=/apps/nudge/"><script>location.replace("/apps/nudge/" + location.hash)</script></head><body><p>This page has moved to <a href="/apps/nudge/">https://apps.bakerstudios.net/apps/nudge/</a>.</p></body></html>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Nudge — the little bird who remembers your homework</title>
+    <meta name="description" content="Free on iPhone and iPad. Nudge puts every due date from Canvas, Schoology, Blackboard and more in one list, and Pip nudges you before each one.">
+    <meta name="robots" content="noindex, follow">
+    <link rel="canonical" href="https://apps.bakerstudios.net/nudge/">
+    <meta name="theme-color" content="#faf5ea" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#15120e" media="(prefers-color-scheme: dark)">
+    <meta name="color-scheme" content="light dark">
+    <meta name="apple-itunes-app" content="app-id=6812403063">
+    <meta property="og:site_name" content="Nudge">
+    <meta property="og:title" content="Nudge — the little bird who remembers your homework">
+    <meta property="og:description" content="Free on iPhone. Every due date from Canvas, Schoology and more in one list, with a nudge before each one.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://apps.bakerstudios.net/nudge/">
+    <meta property="og:image" content="https://apps.bakerstudios.net/assets/nudge/share-og.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Pip, the bird from Nudge, waving from his nest">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" href="/assets/nudge-icon.png" type="image/png">
+    <link rel="apple-touch-icon" href="/assets/nudge-icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400..800&family=Fraunces:opsz,wght,SOFT@9..144,500..700,100&display=swap">
+    <style>
+      /* Nudge's own tokens (Nudge/DesignSystem/Theme.swift), light and dark. */
+      :root {
+        --canvas: #faf5ea; --surface: #fffdf8; --sunken: #f2eadb;
+        --ink: #2b2320; --ink2: #6b5d50; --ink3: #75685a;
+        --border: #eadfcb; --edge: #e4d6be; --hairline: #ebe2d1;
+        --leaf: #7cc456; --leaf-edge: #5e9f3d; --on-leaf: #1d3a10;
+        --brand: #367524; --brand-soft: #eaf6de; --brand-edge: #cfe7ba;
+        --late: #b8354e; --late-soft: #fce6e6;
+        --sun: #f2c14e;
+        --sky: #dcebfb;
+        --note: rgba(255, 253, 248, .86);
+        --col: 560px; --gutter: 20px;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --canvas: #15120e; --surface: #221d17; --sunken: #2d261e;
+          --ink: #f6efe3; --ink2: #c2b6a6; --ink3: #a6998a;
+          --border: #352d24; --edge: #0c0a07; --hairline: #362e25;
+          --brand: #93d46f; --brand-soft: #22341a; --brand-edge: #101a0b;
+          --late: #ff8e9e; --late-soft: #3c1f24;
+          --sky: #1e2a36;
+          --note: rgba(44, 38, 31, .9);
+        }
+      }
+
+      * { box-sizing: border-box; }
+      html { -webkit-text-size-adjust: 100%; }
+      body {
+        margin: 0; background: var(--canvas); color: var(--ink);
+        font: 400 17px/1.5 Figtree, -apple-system, BlinkMacSystemFont, sans-serif;
+        -webkit-font-smoothing: antialiased; overflow-x: clip;
+        padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+      }
+      a { color: inherit; -webkit-tap-highlight-color: transparent; }
+      img { display: block; max-width: 100%; height: auto; }
+      .serif { font-family: Fraunces, Georgia, serif; font-variation-settings: "SOFT" 100, "WONK" 0; font-optical-sizing: auto; }
+      h1, h2, h3 { margin: 0; font-family: Fraunces, Georgia, serif; font-variation-settings: "SOFT" 100, "WONK" 0; font-optical-sizing: auto; font-weight: 600; letter-spacing: -.02em; line-height: 1.08; text-wrap: balance; }
+      p { margin: 0; }
+      .col { width: min(100% - 2 * var(--gutter), var(--col)); margin-inline: auto; }
+      section { padding-block: 56px; }
+      .kicker { margin-bottom: 10px; color: var(--brand); font-size: 14px; font-weight: 700; letter-spacing: .02em; }
+      h2 { font-size: clamp(30px, 8vw, 40px); }
+      .lead { margin-top: 12px; color: var(--ink2); font-size: 17px; }
+
+      /* Flat card with a solid bottom lip: the app's card material. */
+      .card { background: var(--surface); border: 1.5px solid var(--border); border-radius: 24px; box-shadow: 0 4px 0 var(--edge); }
+
+      /* Top */
+      .top { display: flex; align-items: center; gap: 10px; padding-top: 18px; }
+      .top img { width: 36px; height: 36px; border-radius: 9px; }
+      .top span { font-family: Fraunces, Georgia, serif; font-variation-settings: "SOFT" 100; font-size: 23px; font-weight: 640; letter-spacing: -.01em; }
+
+      /* Hero */
+      .hero { padding-block: 22px 52px; text-align: center; }
+      .stage { position: relative; display: grid; place-items: center; margin: 6px auto 4px; width: min(100%, 360px); }
+      .stage .pip { width: 74%; margin-top: 64px; }
+      .bubble {
+        position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+        width: max-content; max-width: 92%; padding: 10px 16px; border-radius: 18px;
+        background: var(--surface); border: 1.5px solid var(--border); box-shadow: 0 3px 0 var(--edge);
+        font-size: 15px; font-weight: 640; line-height: 1.3;
+      }
+      .bubble::after {
+        content: ""; position: absolute; left: 50%; bottom: -8px; width: 14px; height: 14px; margin-left: -7px;
+        background: var(--surface); border-right: 1.5px solid var(--border); border-bottom: 1.5px solid var(--border);
+        transform: rotate(45deg); border-bottom-right-radius: 3px;
+      }
+      .hero h1 { font-size: clamp(38px, 11vw, 56px); }
+      .hero h1 em { font-style: italic; color: var(--brand); }
+      .hero .lead { max-width: 30em; margin: 14px auto 0; font-size: 18px; }
+      .get { display: grid; justify-items: center; gap: 12px; margin-top: 26px; }
+      .badge { display: inline-block; border-radius: 12px; transition: transform .2s cubic-bezier(.2,.8,.2,1); }
+      .badge img { width: 196px; height: auto; }
+      .badge:active { transform: scale(.96); }
+      .get small { color: var(--ink3); font-size: 14px; font-weight: 500; }
+
+      /* The moment: a notification arriving */
+      .moment { padding: 22px; background: var(--sky); border-radius: 28px; overflow: hidden; }
+      .clock { padding: 6px 0 18px; text-align: center; color: var(--ink); }
+      .clock b { display: block; font-family: Fraunces, Georgia, serif; font-variation-settings: "SOFT" 100; font-size: 64px; font-weight: 600; line-height: 1; letter-spacing: -.02em; }
+      .clock span { font-size: 15px; font-weight: 600; color: var(--ink2); }
+      .note {
+        display: grid; grid-template-columns: 38px 1fr; gap: 12px; align-items: start;
+        padding: 13px 14px; border-radius: 22px; background: var(--note);
+        -webkit-backdrop-filter: blur(20px); backdrop-filter: blur(20px);
+        box-shadow: 0 10px 30px rgba(90, 65, 40, .12);
+      }
+      .note + .note { margin-top: 8px; }
+      .note img { width: 38px; height: 38px; border-radius: 9px; }
+      .note .head { display: flex; justify-content: space-between; gap: 8px; font-size: 15px; font-weight: 700; line-height: 1.25; }
+      .note .head time { flex: none; color: var(--ink3); font-size: 13px; font-weight: 500; }
+      .note p { margin-top: 2px; color: var(--ink2); font-size: 15px; line-height: 1.3; }
+      .moment-cap { margin-top: 18px; text-align: center; color: var(--ink2); font-size: 16px; }
+
+      /* Countdown card, as on Home */
+      .count { margin-top: 18px; padding: 22px; }
+      .count .tag { display: flex; align-items: center; gap: 8px; color: var(--ink2); font-size: 13px; font-weight: 650; letter-spacing: .02em; }
+      .count .tag::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--late); }
+      .count b { display: block; margin-top: 6px; color: var(--late); font-family: Fraunces, Georgia, serif; font-variation-settings: "SOFT" 100; font-size: 58px; font-weight: 580; line-height: 1; letter-spacing: -.02em; }
+      .count b small { margin-left: 6px; font-family: Figtree, sans-serif; font-size: 22px; font-weight: 650; letter-spacing: 0; }
+      .count .title { margin-top: 10px; font-size: 17px; font-weight: 620; }
+      .bar { height: 8px; margin-top: 14px; border-radius: 99px; background: var(--late-soft); overflow: hidden; }
+      .bar i { display: block; width: 84%; height: 100%; border-radius: inherit; background: var(--late); }
+
+      /* Steps */
+      .steps { display: grid; gap: 14px; margin: 26px 0 0; padding: 0; list-style: none; counter-reset: s; }
+      .steps li { counter-increment: s; display: grid; grid-template-columns: 44px 1fr; gap: 14px; align-items: start; padding: 18px; }
+      .steps li::before { content: counter(s); display: grid; width: 44px; height: 44px; place-items: center; border-radius: 14px; background: var(--brand-soft); box-shadow: 0 3px 0 var(--brand-edge); color: var(--brand); font-family: Fraunces, Georgia, serif; font-size: 22px; font-weight: 650; }
+      .steps strong { display: block; font-size: 18px; line-height: 1.3; }
+      .steps span { display: block; margin-top: 3px; color: var(--ink2); font-size: 16px; }
+
+      /* Screenshots */
+      .shots { display: grid; grid-auto-flow: column; grid-auto-columns: 62%; gap: 14px; margin-top: 26px; padding: 4px var(--gutter) 10px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: var(--gutter); overscroll-behavior-x: contain; scrollbar-width: none; }
+      .shots::-webkit-scrollbar { display: none; }
+      .shots img { width: 100%; border-radius: 22px; border: 1.5px solid var(--border); box-shadow: 0 4px 0 var(--edge); scroll-snap-align: start; }
+      .swipe { margin-top: 8px; text-align: center; color: var(--ink3); font-size: 14px; }
+
+      /* Works with */
+      .schools { display: grid; grid-template-columns: 1fr 1fr; gap: 0 18px; margin-top: 22px; padding: 10px 20px; }
+      .schools div { display: flex; align-items: center; gap: 10px; padding: 11px 0; border-bottom: 1px solid var(--hairline); font-weight: 600; }
+      .schools div:nth-last-child(-n+2) { border-bottom: 0; }
+      .schools div::before { content: ""; flex: none; width: 18px; height: 18px; border-radius: 6px; background: var(--leaf) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'%3E%3Cpath d='M5 9.4l2.6 2.6L13 6.6' fill='none' stroke='%231d3a10' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/18px no-repeat; }
+      .fine { margin-top: 14px; color: var(--ink3); font-size: 14px; text-align: center; }
+
+      /* Little things */
+      .perks { display: grid; gap: 12px; margin-top: 24px; }
+      .perk { display: grid; grid-template-columns: 48px 1fr; gap: 14px; align-items: center; padding: 16px 18px; }
+      .perk .ic { display: grid; width: 48px; height: 48px; place-items: center; border-radius: 15px; font-size: 22px; }
+      .perk strong { display: block; font-size: 17px; line-height: 1.3; }
+      .perk span { display: block; margin-top: 2px; color: var(--ink2); font-size: 15px; line-height: 1.4; }
+
+      /* Pip's moods */
+      .moods { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 24px; }
+      .mood { padding: 14px 12px 16px; text-align: center; }
+      .mood img { width: 86%; margin: 0 auto; }
+      .mood span { display: block; margin-top: 4px; font-size: 15px; font-weight: 650; line-height: 1.25; }
+
+      /* Note from the maker */
+      .letter { padding: 26px 24px; }
+      .letter blockquote { margin: 0; font-family: Fraunces, Georgia, serif; font-variation-settings: "SOFT" 100; font-size: 23px; font-weight: 520; line-height: 1.35; letter-spacing: -.01em; }
+      .letter p { margin-top: 14px; color: var(--ink2); }
+      .letter .sig { margin-top: 18px; color: var(--ink); font-weight: 650; }
+
+      /* Last call */
+      .final { padding-block: 40px 30px; text-align: center; }
+      .final .pip { width: 62%; max-width: 260px; margin: 0 auto 6px; }
+      .final h2 { font-size: clamp(34px, 9.5vw, 46px); }
+      .final .lead { margin-top: 10px; }
+      footer { padding: 30px 0 calc(34px + env(safe-area-inset-bottom)); border-top: 1px solid var(--hairline); color: var(--ink3); font-size: 14px; text-align: center; }
+      footer nav { display: flex; justify-content: center; flex-wrap: wrap; gap: 6px 18px; margin-top: 8px; }
+      footer a { text-underline-offset: 3px; }
+
+      /* Motion: things settle in once, like they do in the app. Off for reduced motion. */
+      @media (prefers-reduced-motion: no-preference) {
+        .js .rise { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .7s cubic-bezier(.2,.8,.2,1); }
+        .js .rise.in { opacity: 1; transform: none; }
+        .js .hero .pip { animation: settle .9s cubic-bezier(.3,1.4,.5,1) .1s both; }
+        .js .hero .bubble { animation: pop .5s cubic-bezier(.3,1.5,.5,1) .65s both; }
+        .js .note { opacity: 0; transform: translateY(-46px) scale(.96); }
+        .js .moment.in .note { animation: drop .6s cubic-bezier(.25,1.35,.5,1) forwards; }
+        .js .moment.in .note + .note { animation-delay: .5s; }
+      }
+      @keyframes settle { from { opacity: 0; transform: translateY(26px) scale(.94); } to { opacity: 1; transform: none; } }
+      @keyframes pop { from { opacity: 0; transform: translate(-50%, 8px) scale(.85); } to { opacity: 1; transform: translateX(-50%); } }
+      @keyframes drop { to { opacity: 1; transform: none; } }
+
+      @media (min-width: 760px) {
+        section { padding-block: 72px; }
+        .shots { grid-auto-columns: 220px; justify-content: center; }
+      }
+    </style>
+  </head>
+  <body>
+    <script>document.documentElement.classList.add('js')</script>
+    <header class="col top">
+      <img src="/assets/nudge-icon.png" alt="" width="36" height="36">
+      <span>Nudge</span>
+    </header>
+
+    <main>
+      <section class="hero col">
+        <div class="stage">
+          <p class="bubble">Hi, I’m Pip! I’ll tell you before it’s due.</p>
+          <img class="pip" src="/assets/nudge/pip-greeting.webp" alt="Pip, a small orange bird, waving from his nest" width="720" height="720" fetchpriority="high">
+        </div>
+        <h1>The little bird who remembers your <em>homework.</em></h1>
+        <p class="lead">Nudge puts every due date from Canvas, Schoology, Blackboard and more into one list, and Pip nudges you before each one, while there’s still time to do it.</p>
+        <div class="get">
+          <a class="badge" href="https://apps.apple.com/app/nudge-assignment-reminders/id6812403063" aria-label="Download Nudge on the App Store"><img src="/assets/badges/app-store-black.svg" alt="Download on the App Store" width="120" height="40"></a>
+          <small>Free on iPhone and iPad</small>
+        </div>
+      </section>
+
+      <section class="col" aria-labelledby="moment-title">
+        <p class="kicker">The whole idea</p>
+        <h2 id="moment-title">A tap on the shoulder, right on time.</h2>
+        <div class="moment rise" style="margin-top: 24px">
+          <div class="clock"><b>4:12</b><span>Thursday</span></div>
+          <div class="note"><img src="/assets/nudge-icon.png" alt="" width="38" height="38"><div><div class="head"><span>PSYC 110 · due in 3 hours</span><time>now</time></div><p>Reading quiz: chapter 6. Put on some music and dive in.</p></div></div>
+          <div class="note"><img src="/assets/nudge-icon.png" alt="" width="38" height="38"><div><div class="head"><span>Heads up: a deadline moved</span><time>2m ago</time></div><p>Canvas moved your supply &amp; demand worksheet to Friday 5:00 PM.</p></div></div>
+        </div>
+        <div class="card count rise">
+          <span class="tag">MATH 165 · DUE TONIGHT</span>
+          <b>51<small>min left</small></b>
+          <p class="title">Problem set 04</p>
+          <div class="bar"><i></i></div>
+        </div>
+        <p class="moment-cap">Home always counts down to whatever’s due next.</p>
+      </section>
+
+      <section class="col" aria-labelledby="how-title">
+        <p class="kicker">Two minutes to set up</p>
+        <h2 id="how-title">Paste one link. Done for the term.</h2>
+        <ol class="steps">
+          <li class="card rise"><div><strong>Pick your school’s platform</strong><span>Nudge shows you exactly where its calendar link is.</span></div></li>
+          <li class="card rise"><div><strong>Paste the link once</strong><span>Every dated assignment, quiz and exam lands in one list, across all your classes.</span></div></li>
+          <li class="card rise"><div><strong>Pip nudges you in time</strong><span>The day before, then hours before. If a teacher moves a date, he tells you.</span></div></li>
+        </ol>
+      </section>
+
+      <section aria-labelledby="see-title" style="padding-inline: 0">
+        <div class="col"><p class="kicker">Take a look</p><h2 id="see-title">Calm, cute, and always on your side.</h2></div>
+        <div class="shots" tabindex="0" aria-label="Nudge screenshots">
+          <img src="/assets/nudge/01-never-miss-a-deadline.webp" alt="Nudge home screen with a reminder that a reading quiz is due in 3 hours" width="598" height="1300" loading="lazy">
+          <img src="/assets/nudge/02-always-know-whats-next.webp" alt="A live countdown: 51 minutes left on a math problem set" width="598" height="1300" loading="lazy">
+          <img src="/assets/nudge/04-canvas-moved-it.webp" alt="Nudge catching a due date that Canvas moved" width="598" height="1300" loading="lazy">
+          <img src="/assets/nudge/05-just-type-it.webp" alt="Adding homework by typing ‘stats quiz friday 10am’" width="598" height="1300" loading="lazy">
+          <img src="/assets/nudge/07-quiet-while-you-sleep.webp" alt="Nudge stays quiet overnight" width="598" height="1300" loading="lazy">
+          <img src="/assets/nudge/08-meet-pip.webp" alt="Pip’s moods" width="598" height="1300" loading="lazy">
+        </div>
+        <p class="swipe">Swipe to see more</p>
+      </section>
+
+      <section class="col" aria-labelledby="schools-title">
+        <p class="kicker">Works with your school</p>
+        <h2 id="schools-title">Canvas, Schoology and seven more.</h2>
+        <div class="card schools rise">
+          <div>Canvas</div><div>Schoology</div><div>Blackboard</div><div>Brightspace</div><div>Moodle</div><div>Sakai</div><div>ManageBac</div><div>Veracross</div><div>Blackbaud</div><div>Any .ics link</div>
+        </div>
+        <p class="fine">No school password needed. Or just type homework in, like a text.</p>
+      </section>
+
+      <section class="col" aria-labelledby="nice-title">
+        <p class="kicker">Nudged, not nagged</p>
+        <h2 id="nice-title">Little things that make it nice.</h2>
+        <div class="perks">
+          <div class="card perk rise"><span class="ic" style="background: var(--sky)" aria-hidden="true">🌙</span><div><strong>Quiet while you sleep</strong><span>Nothing lands overnight. Late nudges move to the evening before.</span></div></div>
+          <div class="card perk rise"><span class="ic" style="background: #fdefcf" aria-hidden="true">✍️</span><div><strong>Type it like a text</strong><span>“stats quiz friday 10am” is a complete entry. No forms.</span></div></div>
+          <div class="card perk rise"><span class="ic" style="background: var(--brand-soft)" aria-hidden="true">🌱</span><div><strong>Late still counts</strong><span>No streaks, no guilt. If something slips, Pip helps you send it anyway.</span></div></div>
+          <div class="card perk rise"><span class="ic" style="background: var(--late-soft)" aria-hidden="true">🔒</span><div><strong>No account needed</strong><span>Your homework stays on your phone.</span></div></div>
+        </div>
+      </section>
+
+      <section class="col" aria-labelledby="pip-title">
+        <p class="kicker">Meet Pip</p>
+        <h2 id="pip-title">He lives in a nest on your windowsill.</h2>
+        <p class="lead">He cheers when you finish something, naps when nothing’s due, and gets dizzy if you boop him too much.</p>
+        <div class="moods">
+          <div class="card mood rise"><img src="/assets/nudge/pip-cheering.webp" alt="Pip cheering" width="720" height="720" loading="lazy"><span>Finished it!</span></div>
+          <div class="card mood rise"><img src="/assets/nudge/pip-alert.webp" alt="Pip alert, crest up" width="720" height="720" loading="lazy"><span>Due today</span></div>
+          <div class="card mood rise"><img src="/assets/nudge/pip-sleeping.webp" alt="Pip asleep" width="720" height="720" loading="lazy"><span>Nothing due tonight</span></div>
+          <div class="card mood rise"><img src="/assets/nudge/pip-dizzy.webp" alt="Pip dizzy" width="720" height="720" loading="lazy"><span>Booped too much</span></div>
+        </div>
+      </section>
+
+      <section class="col" aria-label="A note from the maker">
+        <div class="card letter rise">
+          <blockquote>“I made Nudge after forgetting one assignment. It was right there on my Canvas list, but I needed a reminder before it was too late.”</blockquote>
+          <p>So I built the app I wished I’d had: one that taps you on the shoulder while there’s still time. I hope it helps you too.</p>
+          <p class="sig">Aiden, maker of Nudge</p>
+        </div>
+      </section>
+
+      <section class="final col" aria-labelledby="final-title">
+        <img class="pip" src="/assets/nudge/pip-wink.webp" alt="" width="720" height="720" loading="lazy">
+        <h2 id="final-title">Let Pip keep watch.</h2>
+        <p class="lead">Free on the App Store. No account needed.</p>
+        <div class="get">
+          <a class="badge" href="https://apps.apple.com/app/nudge-assignment-reminders/id6812403063" aria-label="Download Nudge on the App Store"><img src="/assets/badges/app-store-black.svg" alt="Download on the App Store" width="120" height="40"></a>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="col">
+        <p>Made by Baker Studios</p>
+        <nav><a href="/apps/nudge/">About Nudge</a><a href="/apps/nudge/support/">Help</a><a href="/apps/nudge/privacy/">Privacy</a></nav>
+      </div>
+    </footer>
+
+    <script>
+      (() => {
+        const items = document.querySelectorAll('.rise');
+        if (!('IntersectionObserver' in window)) { items.forEach((el) => el.classList.add('in')); return; }
+        const io = new IntersectionObserver((entries) => entries.forEach((e) => {
+          if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+        }), { threshold: 0.25 });
+        items.forEach((el) => io.observe(el));
+      })();
+    </script>
+  </body>
+</html>
